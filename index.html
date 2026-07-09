@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>J-City - Loading Screen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Bahnschrift', 'Comic Sans', 'Chalkboard SE', 'Segoe UI Emoji', cursive, sans-serif;
+            background: #0a0a0a;
+        }
+
+        .slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation: fadeSoft 24s infinite ease-in-out;
+            will-change: opacity;
+        }
+
+        .slide:nth-child(1)  { animation-delay: 0s;   background-image: url('images/1.jpg');  }
+        .slide:nth-child(2)  { animation-delay: 8s;   background-image: url('images/2.jpg');  }
+        .slide:nth-child(3)  { animation-delay: 16s;  background-image: url('images/3.jpg');  }
+        .slide:nth-child(4)  { animation-delay: 24s;  background-image: url('images/4.jpg');  }
+        .slide:nth-child(5)  { animation-delay: 32s;  background-image: url('images/5.jpg');  }
+        .slide:nth-child(6)  { animation-delay: 40s;  background-image: url('images/6.jpg');  }
+        .slide:nth-child(7)  { animation-delay: 50s;  background-image: url('images/7.jpg');  }
+        .slide:nth-child(8)  { animation-delay: 62s;  background-image: url('images/8.jpg');  }
+        .slide:nth-child(9)  { animation-delay: 70s;  background-image: url('images/9.jpg');  }
+        .slide:nth-child(10) { animation-delay: 82s;  background-image: url('images/10.jpg'); }
+        .slide:nth-child(11) { animation-delay: 90s;  background-image: url('images/11.jpg'); }
+        .slide:nth-child(12) { animation-delay: 104s; background-image: url('images/12.jpg'); }
+        .slide:nth-child(13) { animation-delay: 110s; background-image: url('images/13.jpg'); }
+        .slide:nth-child(14) { animation-delay: 124s; background-image: url('images/14.jpg'); }
+        .slide:nth-child(15) { animation-delay: 130s; background-image: url('images/15.jpg'); }
+        .slide:nth-child(16) { animation-delay: 140s; background-image: url('images/16.jpg'); }
+        .slide:nth-child(17) { animation-delay: 150s; background-image: url('images/17.jpg'); }
+        .slide:nth-child(18) { animation-delay: 160s; background-image: url('images/18.jpg'); }
+        .slide:nth-child(19) { animation-delay: 170s; background-image: url('images/19.jpg'); }
+        .slide:nth-child(20) { animation-delay: 180s; background-image: url('images/20.jpg'); }
+        .slide:nth-child(21) { animation-delay: 190s; background-image: url('images/21.jpg'); }
+        .slide:nth-child(22) { animation-delay: 200s; background-image: url('images/22.jpg'); }
+        .slide:nth-child(23) { animation-delay: 210s; background-image: url('images/23.jpg'); }
+        .slide:nth-child(24) { animation-delay: 220s; background-image: url('images/24.jpg'); }
+        .slide:nth-child(25) { animation-delay: 230s; background-image: url('images/25.jpg'); }
+        .slide:nth-child(26) { animation-delay: 240s; background-image: url('images/26.jpg'); }
+        .slide:nth-child(27) { animation-delay: 250s; background-image: url('images/27.jpg'); }
+        .slide:nth-child(28) { animation-delay: 260s; background-image: url('images/28.jpg'); }
+
+        @keyframes fadeSoft {
+            0%   { opacity: 0; }
+            6%   { opacity: 1; }
+            28%  { opacity: 1; }
+            36%  { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.25) 0%, rgba(255, 20, 147, 0.15) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            text-align: center;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+
+        .fade-in-text {
+            font-size: 4.5vw;
+            font-weight: bold;
+            letter-spacing: 5px;
+            animation: appearGlow 3.2s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+            opacity: 0;
+            color: white;
+            text-shadow: 
+                0 0 12px #ffb6c1,
+                0 0 25px #ff69b4,
+                0 0 40px #ff1493,
+                0 0 55px #ff1493,
+                0 0 70px #c71585;
+            background-color: rgba(255, 20, 147, 0.2);
+            padding: 20px 50px;
+            border-radius: 100px;
+            border: 2px solid rgba(255, 20, 147, 0.9);
+            box-shadow: 
+                0 0 25px rgba(199, 21, 133, 0.5),
+                0 0 50px rgba(199, 21, 133, 0.3);
+            display: inline-block;
+            font-family: inherit;
+        }
+
+        @keyframes appearGlow {
+            0%   { opacity: 0; transform: scale(0.7); text-shadow: 0 0 0 transparent; letter-spacing: 12px; }
+            35%  { opacity: 0.95; transform: scale(1.05); text-shadow: 0 0 25px #ffb6c1, 0 0 50px #ff69b4, 0 0 75px #ff1493; letter-spacing: 6px; }
+            100% { opacity: 1; transform: scale(1); text-shadow: 0 0 12px #ffb6c1, 0 0 28px #ff69b4, 0 0 42px #ff1493, 0 0 56px #ff1493, 0 0 68px #c71585; letter-spacing: 5px; }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 35%, rgba(255, 105, 180, 0.2) 0%, transparent 35%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 20, 147, 0.2) 0%, transparent 40%),
+                        radial-gradient(circle at 95% 15%, rgba(199, 21, 133, 0.12) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .music-player {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 10;
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 12px 24px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 20, 147, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            color: #f0e6e6;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            pointer-events: auto;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-family: 'Bahnschrift', 'Segoe UI', sans-serif;
+            max-width: 70vw;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .music-player .track-icon {
+            font-size: 1.6rem;
+            line-height: 1;
+            opacity: 0.8;
+        }
+
+        .music-player .track-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 280px;
+            display: inline-block;
+            background: linear-gradient(90deg, #ffb6c1, #ff69b4, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: all 0.25s ease;
+        }
+
+        .music-player .track-name.loading {
+            opacity: 0.5;
+            -webkit-text-fill-color: #ddd;
+            background: none;
+            color: #ddd; /* fallback */
+        }
+
+        .music-player {
+            animation: fadeSlideDown 0.8s cubic-bezier(0.15, 0.9, 0.25, 1) 1.2s both;
+        }
+
+        @keyframes fadeSlideDown {
+            0%   { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 680px) {
+            .fade-in-text {
+                font-size: 8vw;
+                padding: 14px 30px;
+                letter-spacing: 3px;
+            }
+            .music-player {
+                top: 20px;
+                left: 20px;
+                padding: 10px 18px;
+                font-size: 0.95rem;
+                max-width: 80vw;
+                white-space: nowrap;
+            }
+            .music-player .track-name {
+                max-width: 150px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .slide { animation: none; opacity: 0; }
+            .slide:first-child { opacity: 1; }
+            .fade-in-text { animation: none; opacity: 1; transform: scale(1); }
+            .music-player { animation: none; opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slideshow">
+        <div class="slide"></div> <div class="slide"></div> <div class="slide"></div> <div class="slide"></div>
+        <div class="slide"></div> <div class="slide"></div> <div class="slide"></div> <div class="slide"></div>
+        <div class="slide"></div> <div class="slide"></div> <div class="slide"></div> <div class="slide"></div>
+        <div class="slide"></div> <div class="slide"></div> <div class="slide"></div> <div class="slide"></div>
+        <div class="slide"></div> <div class="slide"></div> <div class="slide"></div> <div class="slide"></div>
+        <div class="slide"></div> <div class="slide"></div> <div class="slide"></div> <div class="slide"></div>
+        <div class="slide"></div> <div class="slide"></div> <div class="slide"></div> <div class="slide"></div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div class="content">
+        <div class="fade-in-text">J-City</div>
+    </div>
+
+    <div class="music-player" id="musicPlayer" role="status" aria-live="polite">
+        <span class="track-icon">🎵</span>
+        <span class="track-name loading" id="trackDisplay">загрузка...</span>
+    </div>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const TRACK_LIST = [
+                { file: 'music/track1.mp3', label: '42Spinna · Edo Hunnidz - VIP QazaQ' },
+                { file: 'music/track2.mp3', label: 'Aki - popipo00' },
+                { file: 'music/track3.mp3', label: 'EDARUMA - Recent Past' },
+                { file: 'music/track4.mp3', label: 'Aphex Twin - Xtal' },
+                { file: 'music/track5.mp3', label: 'Aphex Twin - Pulsewidth' },
+                { file: 'music/track6.mp3', label: 'laydownrot - perfect face' },
+                { file: 'music/track7.mp3', label: 'Сектор Газа - Колхозный панк' },
+                { file: 'music/track8.mp3', label: 'Сектор Газа - Патриот' },
+                { file: 'music/track9.mp3', label: 'Сектор Газа - Песенка' },
+                { file: 'music/track10.mp3', label: 'Витосик - Капай' },
+                { file: 'music/track11.mp3', label: 'Наутилус Помпилус - Зверь' },
+                { file: 'music/track12.mp3', label: 'Сектор Газа - Твой звонок' },
+                { file: 'music/track13.mp3', label: 'Наутилус Помпилус - Негодяй и ангел' },
+                { file: 'music/track14.mp3', label: 'Tame Impala - Borderline' },
+                { file: 'music/track15.mp3', label: 'Inner Wave - Take 3' },
+                { file: 'music/track16.mp3', label: 'HONE - Resonance' },
+                { file: 'music/track17.mp3', label: 'Смысловые Галлюцинации - Вечно молодой' },
+                { file: 'music/track18.mp3', label: 'Song of saya - Sabbath' },
+                { file: 'music/track19.mp3', label: 'Aki - カガミ' },
+                { file: 'music/track20.mp3', label: 'Aki - MOOGCiTY' },
+            ];
+
+            if (TRACK_LIST.length === 0) {
+                TRACK_LIST.push({ file: '', label: 'нет треков' });
+            }
+
+            let currentTrackIndex = 0;
+            const audio = new Audio();
+            const trackDisplay = document.getElementById('trackDisplay');
+
+            audio.volume = 0.05;
+
+            function updateTrackLabel(label, isLoading) {
+                if (isLoading) {
+                    trackDisplay.textContent = 'загрузка...';
+                    trackDisplay.className = 'track-name loading';
+                } else {
+                    trackDisplay.textContent = label;
+                    trackDisplay.className = 'track-name';
+                }
+            }
+
+            function playTrack(index) {
+                const track = TRACK_LIST[index];
+                if (!track) return;
+
+                if (!track.file) {
+                    updateTrackLabel('⏸ нет трека', false);
+                    return;
+                }
+
+                updateTrackLabel('', true);
+
+                audio.pause();
+                audio.src = track.file;
+                audio.load();
+
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(err => {
+                        console.warn('Autoplay blocked:', err);
+                        updateTrackLabel(track.label + ' (нажми для воспр.)', false);
+                    });
+                }
+
+                audio.oncanplaythrough = function() {
+                    updateTrackLabel(track.label, false);
+                };
+
+                audio.onerror = function() {
+                    updateTrackLabel('⚠ ' + track.label + ' (ошибка)', false);
+                    setTimeout(() => {
+                        if (audio.paused || audio.ended) {
+                            nextTrack();
+                        }
+                    }, 3000);
+                };
+
+                audio.onended = function() {
+                    nextTrack();
+                };
+
+                audio.onstalled = function() {
+                    setTimeout(() => {
+                        if (audio.paused && !audio.ended) {
+                            nextTrack();
+                        }
+                    }, 4000);
+                };
+            }
+
+            function nextTrack() {
+                currentTrackIndex = (currentTrackIndex + 1) % TRACK_LIST.length;
+                playTrack(currentTrackIndex);
+            }
+
+            function playRandomTrack() {
+                const randomIndex = Math.floor(Math.random() * TRACK_LIST.length);
+                currentTrackIndex = randomIndex;
+                playTrack(randomIndex);
+            }
+
+            document.getElementById('musicPlayer').addEventListener('click', function(e) {
+                if (audio.paused) {
+                    audio.play().catch(() => {
+                        nextTrack();
+                    });
+                } else {
+                    nextTrack();
+                }
+            });
+
+            if (TRACK_LIST.length > 0 && TRACK_LIST[0].file) {
+                setTimeout(() => {
+                    playRandomTrack();
+                }, 400);
+            } else {
+                updateTrackLabel('нет треков', false);
+            }
+
+            const playerEl = document.getElementById('musicPlayer');
+            playerEl.title = 'Клик — следующий трек / возобновить';
+
+            document.addEventListener('click', function resumeOnInteraction() {
+                if (audio.paused && audio.src) {
+                    audio.play().catch(() => {});
+                }
+                document.removeEventListener('click', resumeOnInteraction);
+            }, { once: true });
+
+            setInterval(() => {
+                if (audio.ended && audio.src) {
+                    nextTrack();
+                }
+            }, 2000);
+
+        })();
+    </script>
+
+</body>
+</html>

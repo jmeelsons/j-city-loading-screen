@@ -1,2 +1,2 @@
 # j-city-loading-screen
-femboy server :P
+normal server :P
